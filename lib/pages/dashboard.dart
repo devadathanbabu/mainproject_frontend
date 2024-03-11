@@ -2,6 +2,9 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:mainproject/pages/adminLogin.dart';
+import 'package:mainproject/pages/studentLogin.dart';
+import 'package:mainproject/pages/teacherlogin.dart';
 
 class menuPage extends StatefulWidget {
   const menuPage({Key? key});
@@ -24,25 +27,135 @@ class _menuPageState extends State<menuPage> {
       backgroundColor: Color(0xFF222222),
       appBar: AppBar(
         title: Text(
-          "EduConnect",
+          "EDUCONNECT",
           style: TextStyle(
-            fontSize: 30,
+            fontSize: 25,
+
             color: Colors.white,
-            fontWeight: FontWeight.bold,
+            // fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Color(0xFF1C0DCC).withOpacity(0.9),
-        leading: IconButton(
-          icon: Icon(Icons.menu,color: Colors.white,), // Hamburger icon
-          onPressed: () {
-            // Implement your drawer or menu functionality here
-          },
-          iconSize: 35,
-        ),
+        backgroundColor: Color(0xFF222222),
+        actions:[
+          PopupMenuButton(
+          icon: Icon(Icons.person,color: Colors.white,),
+          color: Color(0xFF222222),
+          itemBuilder: (context)=>[
+            PopupMenuItem(
+                child: Container(
+                  height: 80,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: Text("Login",
+                              style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white),
+                              textAlign: TextAlign.center,),
+                )),
+            PopupMenuItem(
+              value: 1,
+              //
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: 100,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                           backgroundColor: Color(0xFF1C0DCC).withOpacity(0.8),
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        side: BorderSide(
+                        color: Color(0xFF000000).withOpacity(0.8), // Change this to your desired stroke color
+                        width: 2, // Change this to adjust the stroke width
+                      ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder:
+                            (context)=>adminLog()));
+                        // Implement action for Button 1
+                      },
+                      child: Text('Admin'),
+                    ),
+                  ),
+                ),
+
+            ),
+            PopupMenuItem(
+              value: 2,
+
+                child: Container(
+
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: 100,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1C0DCC).withOpacity(0.8),
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        side: BorderSide(
+                          color: Color(0xFF000000).withOpacity(0.8), // Change this to your desired stroke color
+                          width: 2, // Change this to adjust the stroke width
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder:
+                            (context)=>studLog()));
+                        // Implement action for Button 2
+                      },
+                      child: Text('Student'),
+                    ),
+                  ),
+                ),
+
+            ),
+            PopupMenuItem(
+              value: 3,
+
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: 100,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1C0DCC).withOpacity(0.8),
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        side: BorderSide(
+                          color: Color(0xFF000000).withOpacity(0.8), // Change this to your desired stroke color
+                          width: 2, // Change this to adjust the stroke width
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder:
+                            (context)=>teacherLog()));
+                        // Implement action for Button 3
+                      },
+                      child: Text('Faculty'),
+                    ),
+                  ),
+                ),
+
+            ),
+          ],
+          ),
+
+
+        ]
 
       ),
       body: SingleChildScrollView(
         child: Container(
+          color: Color(0xFF222222),
           child: Column(
             children: [
               Stack(

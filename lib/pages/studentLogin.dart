@@ -15,10 +15,11 @@ class _studLogState extends State<studLog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body:  Container(
-              alignment: Alignment.center, // Align the container's content at the center horizontally
-              color: Color(0xFF222222),
-              padding: EdgeInsets.all(40),
+      backgroundColor: Color(0xFF222222),
+        body:  Center(
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -50,6 +51,7 @@ class _studLogState extends State<studLog> {
                           hintStyle: TextStyle(color: Colors.white),
                           border: OutlineInputBorder(),
                         ),
+                        style: TextStyle(color: Colors.white),
                       ),
                       SizedBox(height: 20),
                       Text(
@@ -62,6 +64,7 @@ class _studLogState extends State<studLog> {
                           hintStyle: TextStyle(color: Colors.white),
                           border: OutlineInputBorder(),
                         ),
+                        style: TextStyle(color: Colors.white),
                       ),
                     ],
                   ),
@@ -99,6 +102,8 @@ class _studLogState extends State<studLog> {
                 ],
               ),
             ),
+          ),
+        ),
 
 
 

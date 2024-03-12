@@ -81,20 +81,7 @@ class _teacherLogState extends State<teacherLog> {
                       child: Text("Login"),
                     ),
                   ),
-                  SizedBox(height: 80),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Don't have an account?", style: TextStyle(color: Colors.white)),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Sign Up",
-                          style: TextStyle(color: Colors.white70),
-                        ),
-                      ),
-                    ],
-                  ),
+
                 ],
               ),
             ),

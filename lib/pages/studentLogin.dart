@@ -83,22 +83,7 @@ class _studLogState extends State<studLog> {
                       child: Text("Login"),
                     ),
                   ),
-                  SizedBox(height: 80),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Don't have an account?", style: TextStyle(color: Colors.white)),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>adminLog()));
-                        },
-                        child: Text(
-                          "Sign Up",
-                          style: TextStyle(color: Colors.white70),
-                        ),
-                      ),
-                    ],
-                  ),
+
                 ],
               ),
             ),

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mainproject/pages/dashboard.dart';
+import 'package:mainproject/pages/facultyadd.dart';
+import 'package:mainproject/pages/feesupdation.dart';
+import 'package:mainproject/pages/notices.dart';
+import 'package:mainproject/pages/resultadd.dart';
+import 'package:mainproject/pages/studadd.dart';
 
 class admindash extends StatefulWidget {
   const admindash({super.key});
@@ -42,10 +47,19 @@ class _admindashState extends State<admindash> {
                       children: [
                         Column(
                           children: [
-                            CircleAvatar(
-                              radius: 70,
-                              backgroundColor: Color(0xFF222222),
-                              child: SvgPicture.asset("assets/students.svg"),
+                            GestureDetector(
+                              onTap:(){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => studadd()),
+                                );
+                              },
+                              child: CircleAvatar(
+                                radius: 70,
+                                backgroundColor: Color(0xFF222222),
+                                child: SvgPicture.asset("assets/students.svg"),
+
+                              ),
                             ),
                             SizedBox(height: 10,),
                             Text("Student Registration",
@@ -55,10 +69,18 @@ class _admindashState extends State<admindash> {
                         SizedBox(width: 60,),
                         Column(
                           children: [
-                            CircleAvatar(
-                              radius: 70,
-                              backgroundColor: Color(0xFF222222),
-                              child: SvgPicture.asset("assets/undraw_educator_re_ju47.svg"),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => facultyadd()),
+                                );
+                              },
+                              child: CircleAvatar(
+                                radius: 70,
+                                backgroundColor: Color(0xFF222222),
+                                child: SvgPicture.asset("assets/undraw_educator_re_ju47.svg"),
+                              ),
                             ),
                             SizedBox(height: 10,),
                             Text("Faculty Registration",
@@ -74,10 +96,18 @@ class _admindashState extends State<admindash> {
                       children: [
                         Column(
                           children: [
-                            CircleAvatar(
-                              radius: 70,
-                              backgroundColor: Color(0xFF222222),
-                              child: SvgPicture.asset("assets/notices.svg"),
+                            GestureDetector(
+                              onTap:(){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => noticepage()),
+                                );
+                              },
+                              child: CircleAvatar(
+                                radius: 70,
+                                backgroundColor: Color(0xFF222222),
+                                child: SvgPicture.asset("assets/notices.svg"),
+                              ),
                             ),
                             SizedBox(height: 10,),
                             Text("Notices",
@@ -87,10 +117,18 @@ class _admindashState extends State<admindash> {
                         SizedBox(width: 60,),
                         Column(
                           children: [
-                            CircleAvatar(
-                              radius: 70,
-                              backgroundColor: Color(0xFF222222),
-                              child: SvgPicture.asset("assets/fees.svg"),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => feepage()),
+                                );
+                              },
+                              child: CircleAvatar(
+                                radius: 70,
+                                backgroundColor: Color(0xFF222222),
+                                child: SvgPicture.asset("assets/fees.svg"),
+                              ),
                             ),
                             SizedBox(height: 10,),
                             Text("Fees",
@@ -107,28 +145,33 @@ class _admindashState extends State<admindash> {
                       children: [
                         Column(
                           children: [
-                            CircleAvatar(
-                              radius: 70,
-                              backgroundColor: Color(0xFF222222),
-                              child: SvgPicture.asset("assets/result.svg"),
+                            GestureDetector(
+                              onTap:(){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => resultpage()),
+                                );
+                              },
+                              child: CircleAvatar(
+                                radius: 70,
+                                backgroundColor: Color(0xFF222222),
+                                child: SvgPicture.asset("assets/result.svg"),
+                              ),
                             ),
                             SizedBox(height: 10,),
                             Text("Result",
                               style: TextStyle(color: Colors.white),),
                           ],
                         ),
-
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),
           ),
         ),
       ),
-
     );
   }
 }

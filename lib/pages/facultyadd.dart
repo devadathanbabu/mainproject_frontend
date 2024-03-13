@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:mainproject/service/teacherApiService.dart';
 
 class facultyadd extends StatefulWidget {
   const facultyadd({super.key});
@@ -8,6 +10,43 @@ class facultyadd extends StatefulWidget {
 }
 
 class _facultyaddState extends State<facultyadd> {
+  TextEditingController txt1=new TextEditingController();
+  TextEditingController txt2=new TextEditingController();
+  TextEditingController txt3=new TextEditingController();
+  TextEditingController txt4=new TextEditingController();
+  TextEditingController txt5=new TextEditingController();
+  TextEditingController txt6=new TextEditingController();
+  TextEditingController txt7=new TextEditingController();
+  TextEditingController txt8=new TextEditingController();
+  TextEditingController txt9=new TextEditingController();
+  TextEditingController txt10=new TextEditingController();
+
+  final logger=Logger();
+
+  void addfaculty() async{
+    logger.i('Sending faculty data...');
+    try {
+      final response=await facultyApiService().sendData(
+          txt1.text,
+          txt2.text,
+          txt3.text,
+          txt4.text,
+          txt5.text,
+          txt6.text,
+          txt7.text,
+          txt8.text,
+          txt9.text,
+          txt10.text);
+      logger.i('Response received: $response');
+      if (response["status"] == "success") {
+        logger.i("Successfully added");
+      } else {
+        logger.e("Error: ${response["error"]}");
+      }
+    } catch (e) {
+      logger.e('Error sending faculty data: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,7 +69,7 @@ class _facultyaddState extends State<facultyadd> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextField(
-                  // controller: txt1,
+                  controller: txt1,
                   decoration: InputDecoration(
                       hintText: "Enter Name",
                       hintStyle: TextStyle(color: Colors.white),
@@ -41,7 +80,7 @@ class _facultyaddState extends State<facultyadd> {
                 ),
                 SizedBox(height: 10,),
                 TextField(
-                  // controller: txt2,
+                  controller: txt2,
                   decoration: InputDecoration(
                       hintText: "Enter FacultyId",
                       hintStyle: TextStyle(color: Colors.white),
@@ -53,7 +92,7 @@ class _facultyaddState extends State<facultyadd> {
           
                 SizedBox(height: 10,),
                 TextField(
-                  // controller: txt3,
+                  controller: txt3,
                   decoration: InputDecoration(
                       hintText: "Enter Branch",
                       hintStyle: TextStyle(color: Colors.white),
@@ -64,7 +103,7 @@ class _facultyaddState extends State<facultyadd> {
                 ),
                 SizedBox(height: 10,),
                 TextField(
-                  // controller: txt4,
+                  controller: txt4,
                   decoration: InputDecoration(
                       hintText: "Enter DOB",
                       hintStyle: TextStyle(color: Colors.white),
@@ -75,7 +114,7 @@ class _facultyaddState extends State<facultyadd> {
                 ),
                 SizedBox(height: 10,),
                 TextField(
-                  // controller: txt5,
+                  controller: txt5,
                   decoration: InputDecoration(
                       hintText: "Enter Gender",
                       hintStyle: TextStyle(color: Colors.white),
@@ -86,7 +125,7 @@ class _facultyaddState extends State<facultyadd> {
                 ),
                 SizedBox(height: 10,),
                 TextField(
-                  // controller: txt6,
+                  controller: txt6,
                   decoration: InputDecoration(
                       hintText: "Enter Address",
                       hintStyle: TextStyle(color: Colors.white),
@@ -98,7 +137,7 @@ class _facultyaddState extends State<facultyadd> {
                 SizedBox(height: 10,),
                 TextField(
                   keyboardType: TextInputType.number,
-                  // controller: txt6,
+                  controller: txt7,
                   decoration: InputDecoration(
                       hintText: "Enter PhoneNo",
                       hintStyle: TextStyle(color: Colors.white),
@@ -110,7 +149,7 @@ class _facultyaddState extends State<facultyadd> {
                 SizedBox(height: 10,),
                 TextField(
                   keyboardType: TextInputType.number,
-                  // controller: txt6,
+                  controller: txt8,
                   decoration: InputDecoration(
                       hintText: "Enter Alternate PhoneNo",
                       hintStyle: TextStyle(color: Colors.white),
@@ -121,7 +160,7 @@ class _facultyaddState extends State<facultyadd> {
                 ),
                 SizedBox(height: 10,),
                 TextField(
-                  // controller: txt6,
+                  controller: txt9,
                   decoration: InputDecoration(
                       hintText: "Enter eMail",
                       hintStyle: TextStyle(color: Colors.white),
@@ -132,7 +171,7 @@ class _facultyaddState extends State<facultyadd> {
                 ),
                 SizedBox(height: 10,),
                 TextField(
-                  // controller: txt6,
+                  controller: txt10,
                   decoration: InputDecoration(
                       hintText: "Enter Password",
                       hintStyle: TextStyle(color: Colors.white),
@@ -152,7 +191,7 @@ class _facultyaddState extends State<facultyadd> {
                                 borderRadius: BorderRadius.circular(10)
                             )
                         ),
-                        onPressed: (){},
+                        onPressed: addfaculty,
                         child: Text("Add Faculty Details"))),
                 SizedBox(height: 60,),
                 TextButton(onPressed: (){

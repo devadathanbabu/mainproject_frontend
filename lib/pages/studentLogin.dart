@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mainproject/pages/adminLogin.dart';
-import 'package:mainproject/pages/teacherlogin.dart';
+import 'package:mainproject/pages/studentdashboard.dart';
+import 'package:mainproject/service/studentApiService.dart';
 
 
 class studLog extends StatefulWidget {
@@ -12,6 +12,33 @@ class studLog extends StatefulWidget {
 }
 
 class _studLogState extends State<studLog> {
+  TextEditingController txt1=new TextEditingController();
+  TextEditingController txt2=new TextEditingController();
+
+
+  void studentLogin()async{
+    final response=await studentApiService().studlogin(
+        txt1.text,
+        txt2.text);
+
+    if(response["status"]=="success")
+    {
+      print("Login Successfull");
+
+      Navigator.push(context, MaterialPageRoute(builder:
+          (context)=>studdash())
+      );
+    }
+    else if(response["status"]=="invalid user")
+    {
+      print("invalid user");
+
+    }
+    else
+    {
+      print("invalid password");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +73,7 @@ class _studLogState extends State<studLog> {
                         style: TextStyle(color: Colors.white),
                       ),
                       TextField(
+                        controller: txt1,
                         decoration: InputDecoration(
                           hintText: "Enter your eMail",
                           hintStyle: TextStyle(color: Colors.white),
@@ -59,6 +87,8 @@ class _studLogState extends State<studLog> {
                         style: TextStyle(color: Colors.white),
                       ),
                       TextField(
+                        obscureText: true,
+                        controller: txt2,
                         decoration: InputDecoration(
                           hintText: "Enter your password",
                           hintStyle: TextStyle(color: Colors.white),
@@ -79,7 +109,7 @@ class _studLogState extends State<studLog> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: studentLogin,
                       child: Text("Login"),
                     ),
                   ),

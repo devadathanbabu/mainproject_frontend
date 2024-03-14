@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mainproject/pages/facultydashboard.dart';
+import 'package:mainproject/service/teacherApiService.dart';
 
 class teacherLog extends StatefulWidget {
   const teacherLog({super.key});
@@ -9,6 +11,33 @@ class teacherLog extends StatefulWidget {
 }
 
 class _teacherLogState extends State<teacherLog> {
+  TextEditingController txt1=new TextEditingController();
+  TextEditingController txt2=new TextEditingController();
+
+
+  void facultyLogin()async{
+    final response=await facultyApiService().facultylogin(
+        txt1.text,
+        txt2.text);
+
+    if(response["status"]=="success")
+    {
+      print("Login Successfull");
+
+      Navigator.push(context, MaterialPageRoute(builder:
+          (context)=>facultydash())
+      );
+    }
+    else if(response["status"]=="invalid user")
+    {
+      print("invalid user");
+
+    }
+    else
+    {
+      print("invalid password");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,6 +73,7 @@ class _teacherLogState extends State<teacherLog> {
                         style: TextStyle(color: Colors.white),
                       ),
                       TextField(
+                        controller: txt1,
                         decoration: InputDecoration(
                           hintText: "Enter your eMail",
                           hintStyle: TextStyle(color: Colors.white),
@@ -57,6 +87,8 @@ class _teacherLogState extends State<teacherLog> {
                         style: TextStyle(color: Colors.white),
                       ),
                       TextField(
+                        obscureText: true,
+                        controller: txt2,
                         decoration: InputDecoration(
                           hintText: "Enter your password",
                           hintStyle: TextStyle(color: Colors.white),
@@ -77,7 +109,7 @@ class _teacherLogState extends State<teacherLog> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: facultyLogin,
                       child: Text("Login"),
                     ),
                   ),

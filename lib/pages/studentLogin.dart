@@ -119,9 +119,6 @@ class _studLogState extends State<studLog> {
             ),
           ),
         ),
-
-
-
     );
   }
 }

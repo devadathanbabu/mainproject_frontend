@@ -9,6 +9,7 @@ class noticepage extends StatefulWidget {
 }
 
 class _noticepageState extends State<noticepage> {
+  String? _filePath;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +26,7 @@ class _noticepageState extends State<noticepage> {
           backgroundColor: Color(0xFF222222),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(100),
+          padding: const EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,15 +48,52 @@ class _noticepageState extends State<noticepage> {
                         );
 
                         if (result != null) {
-                          String? filePath = result.files.single.path;
+                           _filePath = result.files.single.path;
                           // Handle the file path accordingly, such as uploading it to a server
-                          print('File Path: $filePath');
+                          print('File Path: $_filePath');
                         } else {
                           // User canceled the picker
                           print('User canceled the picker');
                         }
                         },
-                      child: Text("Browse")))
+                      child: Text("Browse"))),
+              SizedBox(height: 20),
+              SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF1C0DCC).withOpacity(0.8),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onPressed: () {
+                    if (_filePath != null) {
+                      // Perform upload action with _filePath
+                      print('Uploading file: $_filePath');
+                    } else {
+                      print('Please select a file first');
+                    }
+                  },
+                  child: Text('Upload File'),
+                ),
+              ),
+              SizedBox(height: 170,),
+              SizedBox(
+                width: 1600,
+                child: TextField(
+                  // controller: txt1,
+                  decoration: InputDecoration(
+                    // hintText: "Enter your eMail",
+                      // hintStyle: TextStyle(color: Colors.white),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40)
+                    ),
+                  ),
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ],
           ),
         ),

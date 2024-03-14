@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mainproject/pages/dashboard.dart';
+import 'package:mainproject/pages/notices.dart';
 import 'package:mainproject/pages/studentLogin.dart';
 
 void main()
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: menuPage(),
+      home: noticepage(),
     );
   }
 }

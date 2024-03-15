@@ -1,5 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+
+import '../service/fileservice.dart';
 
 class noticepage extends StatefulWidget {
   const noticepage({super.key});
@@ -10,6 +13,18 @@ class noticepage extends StatefulWidget {
 
 class _noticepageState extends State<noticepage> {
   String? _filePath;
+  final logger = Logger();
+
+  void uploadFile() async {
+    logger.i('Uploading file...');
+    try {
+      final service = FileUploadService(baseUrl: 'http://192.168.52.9:3000/api/files/'); // Replace with your actual base URL
+      await service.uploadFile(_filePath!);
+      logger.i('File uploaded successfully');
+    } catch (e) {
+      logger.e('Error uploading file: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +41,7 @@ class _noticepageState extends State<noticepage> {
           backgroundColor: Color(0xFF222222),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(100),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,7 +63,10 @@ class _noticepageState extends State<noticepage> {
                         );
 
                         if (result != null) {
-                           _filePath = result.files.single.path;
+                          setState(() {
+                            _filePath = result.files.single.path;
+                          });
+
                           // Handle the file path accordingly, such as uploading it to a server
                           print('File Path: $_filePath');
                         } else {
@@ -70,30 +88,16 @@ class _noticepageState extends State<noticepage> {
                   ),
                   onPressed: () {
                     if (_filePath != null) {
-                      // Perform upload action with _filePath
-                      print('Uploading file: $_filePath');
+                      uploadFile(); // Call uploadFile function if _filePath is not null
                     } else {
                       print('Please select a file first');
                     }
                   },
+
                   child: Text('Upload File'),
                 ),
               ),
-              SizedBox(height: 170,),
-              SizedBox(
-                width: 1600,
-                child: TextField(
-                  // controller: txt1,
-                  decoration: InputDecoration(
-                    // hintText: "Enter your eMail",
-                      // hintStyle: TextStyle(color: Colors.white),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(40)
-                    ),
-                  ),
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+
             ],
           ),
         ),

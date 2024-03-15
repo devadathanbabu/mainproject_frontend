@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:logger/logger.dart';
 
 import '../service/fileservice.dart';
@@ -25,6 +27,38 @@ class _noticepageState extends State<noticepage> {
       logger.e('Error uploading file: $e');
     }
   }
+
+  Widget _buildFilePreview() {
+    if (_filePath != null) {
+      String fileName = _filePath!.split('/').last;
+      if (_filePath!.toLowerCase().endsWith('.pdf')) {
+        return Column(
+          children: [
+            Text(
+              fileName,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+            Container(
+              height: 300,
+              child: PDFView(
+                filePath: _filePath!,
+                fitPolicy: FitPolicy.WIDTH,
+              ),
+            ),
+          ],
+        );
+      } else if (['.jpg', '.jpeg', '.png'].any((ext) => _filePath!.toLowerCase().endsWith(ext))) {
+        return Image.file(File(_filePath!));
+      }
+    }
+    return SizedBox();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,6 +80,7 @@ class _noticepageState extends State<noticepage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              _buildFilePreview(),
               SizedBox(
                 width: 200,
                   child: ElevatedButton(
@@ -76,6 +111,7 @@ class _noticepageState extends State<noticepage> {
                         },
                       child: Text("Browse"))),
               SizedBox(height: 20),
+
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
@@ -97,12 +133,10 @@ class _noticepageState extends State<noticepage> {
                   child: Text('Upload File'),
                 ),
               ),
-
             ],
           ),
         ),
       ),
-
     );
   }
 }

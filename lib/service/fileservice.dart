@@ -34,7 +34,7 @@ class FileUploadService {
 
   Future<List<Map<String, dynamic>>> getFileList() async {
     try {
-      var apiurl = Uri.parse('$baseUrl http://192.168.52.9:3000/api/files/fileviewing');
+      var apiurl = Uri.parse('$baseUrl/fileviewing');
       var response = await http.get(apiurl);
 
       // Check the status code of the response
@@ -46,7 +46,10 @@ class FileUploadService {
         // Convert the data to a list of maps
         List<Map<String, dynamic>> fileList = [];
         for (var item in jsonData) {
-          fileList.add(Map<String, dynamic>.from(item));
+          // Check if the 'path' field is null
+          if (item['path'] != null) {
+            fileList.add(Map<String, dynamic>.from(item));
+          }
         }
 
         return fileList;

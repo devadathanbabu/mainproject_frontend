@@ -20,7 +20,7 @@ class _noticepageState extends State<noticepage> {
   void uploadFile() async {
     logger.i('Uploading file...');
     try {
-      final service = FileUploadService(baseUrl: 'http://192.168.52.9:3000/api/files/'); // Replace with your actual base URL
+      final service = FileUploadService(baseUrl: 'http://192.168.4.9:3000/api/files/'); // Replace with your actual base URL
       await service.uploadFile(_filePath!);
       logger.i('File uploaded successfully');
     } catch (e) {

@@ -38,7 +38,7 @@ class _StudNotificationState extends State<StudNotification> {
   Future<void> fetchFileList() async {
     try {
       // Call the getFileList() function from your service file
-      fileList = await FileUploadService(baseUrl: "http://192.168.1.5:3000/api/files/").getFileList();
+      fileList = await FileUploadService(baseUrl: "http://192.168.4.9:3000/api/files/").getFileList();
       setState(() {});
     } catch (e) {
       print('Error fetching file list: $e');

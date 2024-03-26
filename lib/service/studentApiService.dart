@@ -15,7 +15,7 @@ class studentApiService{
   String email,
   String password) async{
     var client=http.Client();
-    var apiurl=Uri.parse("http://192.168.4.9:3000/api/student/signup");
+    var apiurl=Uri.parse("http://192.168.208.9:3000/api/student/signup");
     var response=await client.post(apiurl,
     headers: <String,String> {
     "Content-Type" : "application/json; charset=UTF-8"
@@ -49,7 +49,7 @@ class studentApiService{
       String email,
       String password) async{
     var client=http.Client();
-    var apiurl=Uri.parse("http://192.168.4.9:3000/api/student/signin");
+    var apiurl=Uri.parse("http://192.168.208.9:3000/api/student/signin");
     var response=await client.post(apiurl,
         headers: <String,String>{
           "Content-Type" : "application/json; charset=UTF-8"

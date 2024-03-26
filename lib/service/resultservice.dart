@@ -4,10 +4,7 @@ import '../model/resultmodel.dart';
 
 class ResultApiService {
   Future<dynamic> addResult(
-      String id,
-      String userIdName,
-      String userIdAdmissionNo,
-      String userIdBranch,
+     String admissionNo,
       String semester,
       String sub1,
       String sub2,
@@ -15,10 +12,9 @@ class ResultApiService {
       String sub4,
       String sub5,
       String sub6,
-      String sub7,
-      int v) async {
+      String sub7,) async {
     var client = http.Client();
-    var apiUrl = Uri.parse("http://192.168.1.5:3000/api/result/add"); // Replace "your-api-url" with your actual API endpoint
+    var apiUrl = Uri.parse("http://192.168.208.9:3000/api/result/add"); // Replace "your-api-url" with your actual API endpoint
     try {
       var response = await client.post(
         apiUrl,
@@ -26,12 +22,7 @@ class ResultApiService {
           "Content-Type": "application/json; charset=UTF-8"
         },
         body: jsonEncode(<String, dynamic>{
-          "id": id,
-          "userId": {
-            "name": userIdName,
-            "admissionNo": userIdAdmissionNo,
-            "branch": userIdBranch,
-          },
+          "admissionNo" : admissionNo,
           "semester": semester,
           "sub1": sub1,
           "sub2": sub2,
@@ -40,7 +31,7 @@ class ResultApiService {
           "sub5": sub5,
           "sub6": sub6,
           "sub7": sub7,
-          "__v": v,
+
         }),
       );
       if (response.statusCode == 200) {
@@ -56,7 +47,7 @@ class ResultApiService {
 
   Future<List<Result>> getResults() async {
     var client = http.Client();
-    var apiUrl = Uri.parse("http://192.168.1.5:3000/api/result/viewall"); // Replace "your-api-url" with your actual API endpoint
+    var apiUrl = Uri.parse("http://192.168.208.9:3000/api/result/viewall"); // Replace "your-api-url" with your actual API endpoint
     try {
       var response = await client.get(apiUrl);
       if (response.statusCode == 200) {

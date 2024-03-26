@@ -150,8 +150,11 @@ class _admindashState extends State<admindash> {
                                 onTap:(){
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => resultpage()),
+                                    MaterialPageRoute(
+                                      builder: (context) => ResultPage(key: UniqueKey()), // Pass an instance of ResultPage
+                                    ),
                                   );
+
                                 },
                                 child: CircleAvatar(
                                   radius: 70,

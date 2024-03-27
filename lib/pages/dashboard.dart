@@ -207,7 +207,59 @@ class _menuPageState extends State<menuPage> {
                     ),
                   ],
                 ),
-                 
+                 SizedBox(height: 20,),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      SizedBox(width: 20,),
+                      Container(
+                        height: 175,
+                        width: 175,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10),
+                                  ),
+                                ),
+                                alignment: Alignment.center,
+                                child: Text("21 Years",
+                                    style: TextStyle(color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22)),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF004E95),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
+                                ),
+                                alignment: Alignment.center,
+                                child: Text("Legacy", style: TextStyle(color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22)),
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+
 
 
               ],
